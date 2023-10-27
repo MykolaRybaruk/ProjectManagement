@@ -4,7 +4,7 @@ import NoProjectSelected from "./components/NoProjectSelected";
 import ProjectsSidebar from "./components/ProjectsSidebar";
 
 function App() {
-  const [propjectsState, setProjectsState] = useState({
+  const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
     projects: []
   });
@@ -16,13 +16,29 @@ function App() {
         selectedProjectId: null,
       };
     });
+  };
+
+  function handleAddProject(projectData) {
+    setProjectsState(prevState => {
+      const newProject = {
+        ...projectData,
+        id: Math.random()
+      }
+
+      return {
+        ...prevState,
+        projects: [...prevState.projects, newProject]
+      }
+    });
   }
 
   let content;
 
-  if (propjectsState.selectedProjectId === null) {
-    content = <NewProject />
-  } else if (propjectsState.selectedProjectId === undefined) {
+  console.log(projectsState);
+
+  if (projectsState.selectedProjectId === null) {
+    content = <NewProject onAdd={handleAddProject}/>
+  } else if (projectsState.selectedProjectId === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartNewProjest} />
   }
 

@@ -1,3 +1,5 @@
+import Input from "./Input";
+
 export default function NewProject() {
     return <div>
         <menu>
@@ -7,22 +9,9 @@ export default function NewProject() {
             </li>
         </menu>
         <div>
-            <p>
-                <label>Title</label>
-                <input />
-            </p>
-        </div>
-        <div>
-            <p>
-                <label>Description</label>
-                <textarea />
-            </p>
-        </div>
-        <div>
-            <p>
-                <label>Due Date</label>
-                <input />
-            </p>
+            <Input label="Title" />
+            <Input label="Description" textarea />
+            <Input label="Due Date" />
         </div>
     </div>
 }

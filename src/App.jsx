@@ -6,29 +6,31 @@ import ProjectsSidebar from "./components/ProjectsSidebar";
 function App() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
-    projects: []
+    projects: [],
   });
 
   function handleStartNewProjest() {
-    setProjectsState(prevState => {
+    setProjectsState((prevState) => {
       return {
         ...prevState,
         selectedProjectId: null,
       };
     });
-  };
+  }
 
   function handleAddProject(projectData) {
-    setProjectsState(prevState => {
+    setProjectsState((prevState) => {
+      const projectID = Math.random();
       const newProject = {
         ...projectData,
-        id: Math.random()
-      }
+        id: projectID,
+      };
 
       return {
         ...prevState,
-        projects: [...prevState.projects, newProject]
-      }
+        selectedProjectId: undefined,
+        projects: [...prevState.projects, newProject],
+      };
     });
   }
 
@@ -37,14 +39,17 @@ function App() {
   console.log(projectsState);
 
   if (projectsState.selectedProjectId === null) {
-    content = <NewProject onAdd={handleAddProject}/>
+    content = <NewProject onAdd={handleAddProject} />;
   } else if (projectsState.selectedProjectId === undefined) {
-    content = <NoProjectSelected onStartAddProject={handleStartNewProjest} />
+    content = <NoProjectSelected onStartAddProject={handleStartNewProjest} />;
   }
 
   return (
     <main className="h-screen my-8 flex gap-8">
-      <ProjectsSidebar onStartAddProject={handleStartNewProjest} />
+      <ProjectsSidebar
+        onStartAddProject={handleStartNewProjest}
+        projects={projectsState.projects}
+      />
       {content}
     </main>
   );

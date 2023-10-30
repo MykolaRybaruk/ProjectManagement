@@ -1,5 +1,13 @@
 import Button from "./Button";
 
+const usedTools = [
+  "useRef",
+  "forwardRef",
+  "useImperativeHandle",
+  "usePortal",
+  "etc...",
+];
+
 export default function ProjectsSidebar({
   onStartAddProject,
   projects,
@@ -35,6 +43,14 @@ export default function ProjectsSidebar({
           );
         })}
       </ul>
+      <div>
+        <p>In this project the next tools was used:</p>
+        <ul>
+          {usedTools.map((tool) => (
+            <li>{tool}</li>
+          ))}
+        </ul>
+      </div>
     </aside>
   );
 }

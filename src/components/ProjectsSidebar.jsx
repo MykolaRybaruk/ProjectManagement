@@ -1,10 +1,11 @@
 import Button from "./Button";
 
 const usedTools = [
+  "Tailwind",
   "useRef",
   "forwardRef",
   "useImperativeHandle",
-  "usePortal",
+  "createPortal",
   "etc...",
 ];
 
@@ -15,7 +16,7 @@ export default function ProjectsSidebar({
   selectedProjectID,
 }) {
   return (
-    <aside className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl">
+    <aside className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl relative">
       <h2 className="mb-8 font-bold uppercase md:text-xl text-stone:200">
         Your Projects!
       </h2>
@@ -43,13 +44,16 @@ export default function ProjectsSidebar({
           );
         })}
       </ul>
-      <div>
-        <p>In this project the next tools was used:</p>
-        <ul>
+      <div className="absolute bottom-10 w-4/5">
+        <p className="text-sm">In this project the next tools was used:</p>
+        <ul className="mt-5">
           {usedTools.map((tool) => (
-            <li>{tool}</li>
+            <li key={Math.random()} className="text-xs">
+              {tool}
+            </li>
           ))}
         </ul>
+        <p className="text-sm mt-5">Mykola Rybaruk© 2023</p>
       </div>
     </aside>
   );

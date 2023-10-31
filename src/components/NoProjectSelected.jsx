@@ -4,6 +4,9 @@ import Button from "./Button";
 export default function NoProjectSelected({ onStartAddProject }) {
   return (
     <div className="mt-24 text-center w-2/3">
+      <p className="mb-5">
+        Try to add the new project and then to manage tasks inside it
+      </p>
       <img
         src={noProjectImage}
         alt="An empty task list"
